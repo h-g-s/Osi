@@ -994,7 +994,8 @@ OsiSolverInterface::OsiSolverInterface () :
   defaultHandler_(true),
   columnType_(NULL),
   appDataEtc_(NULL),
-  ws_(NULL)
+  ws_(NULL),
+  preprocess(NULL)
 {
   setInitialData();
 }
@@ -1054,7 +1055,8 @@ OsiSolverInterface::setInitialData()
 //-------------------------------------------------------------------
 OsiSolverInterface::OsiSolverInterface (const OsiSolverInterface & rhs) :
   rowCutDebugger_(NULL),
-  ws_(NULL)
+  ws_(NULL),
+  preprocess(rhs.preprocess)  
 {  
   appDataEtc_ = rhs.appDataEtc_->clone();
   if ( rhs.rowCutDebugger_!=NULL )
@@ -1162,6 +1164,7 @@ OsiSolverInterface::operator=(const OsiSolverInterface& rhs)
     delete [] columnType_;
     // NULL as number of columns not known
     columnType_ = NULL;
+    this->preprocess = rhs.preprocess;
   }
   return *this;
 }

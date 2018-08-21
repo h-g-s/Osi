@@ -1982,6 +1982,10 @@ public:
     virtual void reset();
   //@}
 
+  /*! \brief returns NULL if this model is not the result of some preprocessing or a pointer to a CglPreProcess object */
+    void *getPreProcessor() { return preprocess; }
+  
+  
   //---------------------------------------------------------------------------
 
 protected:
@@ -2086,7 +2090,14 @@ private:
     /// Objective name
     std::string objName_ ;
 
+    /// preprocess object: if this is the result of a preprocessed model
+    /// then this pointer points to the CglPreProcess object that generated it
+    /// this is needed to generate the solution in terms of the original variables
+    /// using void to not include additional dependencies
+    void *preprocess;
+
  //@}
+ friend class CglPreProcess;
 };
 
 //#############################################################################
