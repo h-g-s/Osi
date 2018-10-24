@@ -20,6 +20,10 @@
 #include "OsiCollections.hpp"
 #include "OsiSolverParameters.hpp"
 
+/*----------SAMUEL_BRITO----------*/
+#include "cgraph.h"
+/*-------------------------------*/
+
 class CoinSnapshot;
 class CoinLpIO;
 class CoinMpsIO;
@@ -69,6 +73,16 @@ class OsiSolverInterface  {
       const std::string & mpsDir);
 
 public:
+  /*----------SAMUEL_BRITO----------*/
+  static int countCG;
+  static double cgTime;
+  inline const CGraph* getCGraph() const;
+  inline void setCGraph(CGraph *);
+  inline void performingHeuristics(const bool);
+  inline const bool isPerformingHeuristics() const;
+  inline const bool useCG() const;
+  inline void setUseCG(const bool);
+  /*-------------------------------*/
 
   /// Internal class for obtaining status from the applyCuts method 
   class ApplyCutsReturnCode {
@@ -2097,6 +2111,12 @@ private:
     void *preprocess;
 
  //@}
+    /*----------SAMUEL_BRITO----------*/
+    CGraph *cg_;
+    bool performingHeuristics_;
+    bool useCG_;
+    /*-------------------------------*/
+
  friend class CglPreProcess;
 };
 
@@ -2165,5 +2185,29 @@ OsiSolverInterface::convertSenseToBound(const char sense, const double right,
     break;
   }
 }
+
+/*----------SAMUEL_BRITO----------*/
+inline const CGraph* OsiSolverInterface::getCGraph() const {
+  return cg_;
+}
+inline void OsiSolverInterface::setCGraph(CGraph *newCG) {
+  if(cg_) {
+    cgraph_free(&cg_);
+  }
+  cg_ = newCG;
+}
+inline void OsiSolverInterface::performingHeuristics(const bool performingHeur) {
+  performingHeuristics_ = performingHeur;
+}
+inline const bool OsiSolverInterface::isPerformingHeuristics() const {
+  return performingHeuristics_;
+}
+inline const bool OsiSolverInterface::useCG() const {
+  return useCG_;
+}
+inline void OsiSolverInterface::setUseCG(const bool useCG) {
+  useCG_ = useCG;
+}
+/*-------------------------------*/
 
 #endif

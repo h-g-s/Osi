@@ -29,6 +29,12 @@
 #include "CoinBuild.hpp"
 #include "CoinModel.hpp"
 #include "CoinLpIO.hpp"
+
+/*----------SAMUEL_BRITO----------*/
+int OsiSolverInterface::countCG = 0;
+double OsiSolverInterface::cgTime = 0.0;
+/*-------------------------------*/
+
 //#############################################################################
 // Hotstart related methods (primarily used in strong branching)
 // It is assumed that only bounds (on vars/constraints) can change between
@@ -995,7 +1001,12 @@ OsiSolverInterface::OsiSolverInterface () :
   columnType_(NULL),
   appDataEtc_(NULL),
   ws_(NULL),
-  preprocess(NULL)
+  preprocess(NULL),
+  /*----------SAMUEL_BRITO----------*/
+  cg_(NULL),
+  performingHeuristics_(false),
+  useCG_(true)
+  /*-------------------------------*/
 {
   setInitialData();
 }
@@ -1089,6 +1100,21 @@ OsiSolverInterface::OsiSolverInterface (const OsiSolverInterface & rhs) :
   objName_ = rhs.objName_ ;
   // NULL as number of columns not known
   columnType_ = NULL;
+  /*----------SAMUEL_BRITO----------*/
+  if(rhs.useCG_) {
+    if(rhs.cg_) {
+      cg_ = cgraph_clone(rhs.cg_);
+    } else {
+      cg_ = NULL;
+    }
+    performingHeuristics_ = rhs.performingHeuristics_;
+    useCG_ = rhs.useCG_;
+  } else {
+    cg_ = NULL;
+    useCG_ = false;
+    performingHeuristics_ = rhs.performingHeuristics_;
+  }
+  /*-------------------------------*/
 }
 
 //-------------------------------------------------------------------
@@ -1110,6 +1136,12 @@ OsiSolverInterface::~OsiSolverInterface ()
     delete object_[i];
   delete [] object_;
   delete [] columnType_;
+
+  /*----------SAMUEL_BRITO----------*/
+  if(cg_) {
+    cgraph_free(&cg_);
+  }
+  /*-------------------------------*/
 }
 
 //----------------------------------------------------------------
@@ -1165,6 +1197,26 @@ OsiSolverInterface::operator=(const OsiSolverInterface& rhs)
     // NULL as number of columns not known
     columnType_ = NULL;
     this->preprocess = rhs.preprocess;
+
+    /*----------SAMUEL_BRITO----------*/
+    if(cg_) {
+      cgraph_free(&cg_);
+    }
+    if(rhs.useCG_) {
+      if(rhs.cg_) {
+        cg_ = cgraph_clone(rhs.cg_);
+      } else {
+        cg_ = NULL;
+      }
+      performingHeuristics_ = rhs.performingHeuristics_;
+      useCG_ = rhs.useCG_;
+    }
+    else {
+      cg_ = NULL;
+      useCG_ = false;
+      performingHeuristics_ = rhs.performingHeuristics_;
+    }
+    /*-------------------------------*/
   }
   return *this;
 }
