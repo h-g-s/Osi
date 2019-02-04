@@ -47,7 +47,7 @@ enum OsiIntParam {
     integer parameters.
   */
   OsiLastIntParam
-} ;
+};
 
 enum OsiDblParam {
   /*! \brief Dual objective limit.
@@ -83,7 +83,6 @@ enum OsiDblParam {
   */
   OsiLastDblParam
 };
-
 
 enum OsiStrParam {
   /*! \brief The name of the loaded problem.

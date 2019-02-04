@@ -8,8 +8,7 @@
 //#############################################################################
 
 //--------------------------------------------------------------------------
-void
-OsiTestSolverInterfaceUnitTest(const std::string & mpsDir, const std::string & netlibDir)
+void OsiTestSolverInterfaceUnitTest(const std::string &mpsDir, const std::string &netlibDir)
 {
 
   // Do common solverInterface testing
@@ -17,5 +16,4 @@ OsiTestSolverInterfaceUnitTest(const std::string & mpsDir, const std::string & n
     OsiTestSolverInterface m;
     OsiSolverInterfaceCommonUnitTest(&m, mpsDir, netlibDir);
   }
-
 }

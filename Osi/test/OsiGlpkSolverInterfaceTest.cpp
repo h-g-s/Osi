@@ -4,7 +4,7 @@
 //   University of Pittsburgh coding done by Brady Hunsaker
 // This file is licensed under the terms of Eclipse Public License (EPL).
 
-// OsiGlpkSolverInterfaceTest.cpp adapted from OsiClpSolverInterfaceTest.cpp 
+// OsiGlpkSolverInterfaceTest.cpp adapted from OsiClpSolverInterfaceTest.cpp
 //  on 2004/10/16
 // Check for ??? to see tests that aren't working correctly.
 // Also note that OsiPresolve doesn't appear to work with OsiGlpk.  This
@@ -28,108 +28,107 @@
 // when not building with glpk.
 #ifdef COIN_HAS_GLPK
 
-void OsiGlpkSolverInterfaceUnitTest(const std::string & mpsDir, const std::string & netlibDir)
+void OsiGlpkSolverInterfaceUnitTest(const std::string &mpsDir, const std::string &netlibDir)
 {
   // Test default constructor
   {
     OsiGlpkSolverInterface m;
-    OSIUNITTEST_ASSERT_ERROR(m.obj_         == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.collower_    == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.colupper_    == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.ctype_       == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.rowsense_    == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.rhs_         == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.rowrange_    == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.rowlower_    == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.rowupper_    == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.colsol_      == NULL, {}, "glpk", "default constructor");
-    OSIUNITTEST_ASSERT_ERROR(m.rowsol_      == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.obj_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.collower_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.colupper_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.ctype_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.rowsense_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.rhs_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.rowrange_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.rowlower_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.rowupper_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.colsol_ == NULL, {}, "glpk", "default constructor");
+    OSIUNITTEST_ASSERT_ERROR(m.rowsol_ == NULL, {}, "glpk", "default constructor");
     OSIUNITTEST_ASSERT_ERROR(m.matrixByRow_ == NULL, {}, "glpk", "default constructor");
     OSIUNITTEST_ASSERT_ERROR(m.matrixByCol_ == NULL, {}, "glpk", "default constructor");
     OSIUNITTEST_ASSERT_ERROR(m.getApplicationData() == NULL, {}, "glpk", "default constructor");
-    int i=2346;
+    int i = 2346;
     m.setApplicationData(&i);
     OSIUNITTEST_ASSERT_ERROR(*((int *)(m.getApplicationData())) == i, {}, "glpk", "default constructor");
   }
-  
-  
+
   {
     CoinRelFltEq eq;
     OsiGlpkSolverInterface m;
-    std::string fn = mpsDir+"exmip1";
-    m.readMps(fn.c_str(),"mps");
-    
+    std::string fn = mpsDir + "exmip1";
+    m.readMps(fn.c_str(), "mps");
+
     {
-      OsiGlpkSolverInterface im;    
-      
-      OSIUNITTEST_ASSERT_ERROR(im.getNumCols()  == 0,    {}, "glpk", "default constructor");
+      OsiGlpkSolverInterface im;
+
+      OSIUNITTEST_ASSERT_ERROR(im.getNumCols() == 0, {}, "glpk", "default constructor");
       OSIUNITTEST_ASSERT_ERROR(im.getModelPtr() != NULL, {}, "glpk", "default constructor");
-      
+
       // Test reset
       im.reset();
-      OSIUNITTEST_ASSERT_ERROR(m.obj_         == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.collower_    == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.colupper_    == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.ctype_       == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.rowsense_    == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.rhs_         == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.rowrange_    == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.rowlower_    == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.rowupper_    == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.colsol_      == NULL, {}, "glpk", "reset");
-      OSIUNITTEST_ASSERT_ERROR(m.rowsol_      == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.obj_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.collower_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.colupper_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.ctype_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.rowsense_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.rhs_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.rowrange_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.rowlower_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.rowupper_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.colsol_ == NULL, {}, "glpk", "reset");
+      OSIUNITTEST_ASSERT_ERROR(m.rowsol_ == NULL, {}, "glpk", "reset");
       OSIUNITTEST_ASSERT_ERROR(m.matrixByRow_ == NULL, {}, "glpk", "reset");
       OSIUNITTEST_ASSERT_ERROR(m.matrixByCol_ == NULL, {}, "glpk", "reset");
       OSIUNITTEST_ASSERT_ERROR(m.getApplicationData() == NULL, {}, "glpk", "reset");
     }
-    
+
     // Test copy constructor and assignment operator
     {
       OsiGlpkSolverInterface lhs;
-      {      
-        OsiGlpkSolverInterface im(m);        
-	
+      {
+        OsiGlpkSolverInterface im(m);
+
         OsiGlpkSolverInterface imC1(im);
         OSIUNITTEST_ASSERT_ERROR(imC1.getModelPtr() != im.getModelPtr(), {}, "glpk", "copy constructor");
-        OSIUNITTEST_ASSERT_ERROR(imC1.getNumCols()  == im.getNumCols(),  {}, "glpk", "copy constructor");
-        OSIUNITTEST_ASSERT_ERROR(imC1.getNumRows()  == im.getNumRows(),  {}, "glpk", "copy constructor");
-        
+        OSIUNITTEST_ASSERT_ERROR(imC1.getNumCols() == im.getNumCols(), {}, "glpk", "copy constructor");
+        OSIUNITTEST_ASSERT_ERROR(imC1.getNumRows() == im.getNumRows(), {}, "glpk", "copy constructor");
+
         OsiGlpkSolverInterface imC2(im);
         OSIUNITTEST_ASSERT_ERROR(imC2.getModelPtr() != im.getModelPtr(), {}, "glpk", "copy constructor");
-        OSIUNITTEST_ASSERT_ERROR(imC2.getNumCols()  == im.getNumCols(),  {}, "glpk", "copy constructor");
-        OSIUNITTEST_ASSERT_ERROR(imC2.getNumRows()  == im.getNumRows(),  {}, "glpk", "copy constructor");
-	
+        OSIUNITTEST_ASSERT_ERROR(imC2.getNumCols() == im.getNumCols(), {}, "glpk", "copy constructor");
+        OSIUNITTEST_ASSERT_ERROR(imC2.getNumRows() == im.getNumRows(), {}, "glpk", "copy constructor");
+
         OSIUNITTEST_ASSERT_ERROR(imC1.getModelPtr() != imC2.getModelPtr(), {}, "glpk", "copy constructor");
-        
+
         lhs = imC2;
       }
 
       // Test that lhs has correct values even though rhs has gone out of scope
       OSIUNITTEST_ASSERT_ERROR(lhs.getModelPtr() != m.getModelPtr(), {}, "glpk", "assignment operator");
-      OSIUNITTEST_ASSERT_ERROR(lhs.getNumCols()  == m.getNumCols(),  {}, "glpk", "copy constructor");
-      OSIUNITTEST_ASSERT_ERROR(lhs.getNumRows()  == m.getNumRows(),  {}, "glpk", "copy constructor");
+      OSIUNITTEST_ASSERT_ERROR(lhs.getNumCols() == m.getNumCols(), {}, "glpk", "copy constructor");
+      OSIUNITTEST_ASSERT_ERROR(lhs.getNumRows() == m.getNumRows(), {}, "glpk", "copy constructor");
     }
 
     // Test clone
     {
       OsiGlpkSolverInterface glpkSi(m);
-      OsiSolverInterface * siPtr = &glpkSi;
-      OsiSolverInterface * siClone = siPtr->clone();
-      OsiGlpkSolverInterface * glpkClone = dynamic_cast<OsiGlpkSolverInterface*>(siClone);
+      OsiSolverInterface *siPtr = &glpkSi;
+      OsiSolverInterface *siClone = siPtr->clone();
+      OsiGlpkSolverInterface *glpkClone = dynamic_cast< OsiGlpkSolverInterface * >(siClone);
       OSIUNITTEST_ASSERT_ERROR(glpkClone != NULL, {}, "glpk", "clone");
       OSIUNITTEST_ASSERT_ERROR(glpkClone->getModelPtr() != glpkSi.getModelPtr(), {}, "glpk", "clone");
       OSIUNITTEST_ASSERT_ERROR(glpkClone->getNumRows() == glpkSi.getNumRows(), {}, "glpk", "clone");
       OSIUNITTEST_ASSERT_ERROR(glpkClone->getNumCols() == glpkSi.getNumCols(), {}, "glpk", "clone");
-      
+
       delete siClone;
     }
-  
+
     // test infinity
     {
       OsiGlpkSolverInterface si;
       OSIUNITTEST_ASSERT_ERROR(si.getInfinity() == COIN_DBL_MAX, {}, "glpk", "infinity");
     }
-    
+
 #if 0
     // ??? These index error 'throw's aren't in OsiGlpk 
 
@@ -161,40 +160,40 @@ void OsiGlpkSolverInterfaceUnitTest(const std::string & mpsDir, const std::strin
       }
     }
 #endif
-    
-    {    
+
+    {
       OsiGlpkSolverInterface glpkSi(m);
       int nc = glpkSi.getNumCols();
       int nr = glpkSi.getNumRows();
-      const double * cl = glpkSi.getColLower();
-      const double * cu = glpkSi.getColUpper();
-      const double * rl = glpkSi.getRowLower();
-      const double * ru = glpkSi.getRowUpper();
+      const double *cl = glpkSi.getColLower();
+      const double *cu = glpkSi.getColUpper();
+      const double *rl = glpkSi.getRowLower();
+      const double *ru = glpkSi.getRowUpper();
       OSIUNITTEST_ASSERT_ERROR(nc == 8, return, "glpk", "read and copy exmip1");
       OSIUNITTEST_ASSERT_ERROR(nr == 5, return, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(cl[0],2.5), {}, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(cl[1],0.0), {}, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(cu[1],4.1), {}, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(cu[2],1.0), {}, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(rl[0],2.5), {}, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(rl[4],3.0), {}, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(ru[1],2.1), {}, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(ru[4],15.), {}, "glpk", "read and copy exmip1");
-      
-      const double * cs = glpkSi.getColSolution();
-      OSIUNITTEST_ASSERT_ERROR(eq(cs[0],2.5), {}, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(cs[7],0.0), {}, "glpk", "read and copy exmip1");
-      
-      OSIUNITTEST_ASSERT_ERROR(!eq(cl[3],1.2345), {}, "glpk", "set col lower");
-      glpkSi.setColLower( 3, 1.2345 );
-      OSIUNITTEST_ASSERT_ERROR( eq(cl[3],1.2345), {}, "glpk", "set col lower");
-      
-      OSIUNITTEST_ASSERT_ERROR(!eq(glpkSi.getColUpper()[4],10.2345), {}, "glpk", "set col upper");
-      glpkSi.setColUpper( 4, 10.2345 );
-      OSIUNITTEST_ASSERT_ERROR( eq(glpkSi.getColUpper()[4],10.2345), {}, "glpk", "set col upper");
+      OSIUNITTEST_ASSERT_ERROR(eq(cl[0], 2.5), {}, "glpk", "read and copy exmip1");
+      OSIUNITTEST_ASSERT_ERROR(eq(cl[1], 0.0), {}, "glpk", "read and copy exmip1");
+      OSIUNITTEST_ASSERT_ERROR(eq(cu[1], 4.1), {}, "glpk", "read and copy exmip1");
+      OSIUNITTEST_ASSERT_ERROR(eq(cu[2], 1.0), {}, "glpk", "read and copy exmip1");
+      OSIUNITTEST_ASSERT_ERROR(eq(rl[0], 2.5), {}, "glpk", "read and copy exmip1");
+      OSIUNITTEST_ASSERT_ERROR(eq(rl[4], 3.0), {}, "glpk", "read and copy exmip1");
+      OSIUNITTEST_ASSERT_ERROR(eq(ru[1], 2.1), {}, "glpk", "read and copy exmip1");
+      OSIUNITTEST_ASSERT_ERROR(eq(ru[4], 15.), {}, "glpk", "read and copy exmip1");
+
+      const double *cs = glpkSi.getColSolution();
+      OSIUNITTEST_ASSERT_ERROR(eq(cs[0], 2.5), {}, "glpk", "read and copy exmip1");
+      OSIUNITTEST_ASSERT_ERROR(eq(cs[7], 0.0), {}, "glpk", "read and copy exmip1");
+
+      OSIUNITTEST_ASSERT_ERROR(!eq(cl[3], 1.2345), {}, "glpk", "set col lower");
+      glpkSi.setColLower(3, 1.2345);
+      OSIUNITTEST_ASSERT_ERROR(eq(cl[3], 1.2345), {}, "glpk", "set col lower");
+
+      OSIUNITTEST_ASSERT_ERROR(!eq(glpkSi.getColUpper()[4], 10.2345), {}, "glpk", "set col upper");
+      glpkSi.setColUpper(4, 10.2345);
+      OSIUNITTEST_ASSERT_ERROR(eq(glpkSi.getColUpper()[4], 10.2345), {}, "glpk", "set col upper");
 
       double objValue = glpkSi.getObjValue();
-      OSIUNITTEST_ASSERT_ERROR(eq(objValue,3.5), {}, "glpk", "getObjValue() before solve");
+      OSIUNITTEST_ASSERT_ERROR(eq(objValue, 3.5), {}, "glpk", "getObjValue() before solve");
 
       OSIUNITTEST_ASSERT_ERROR(eq(glpkSi.getObjCoefficients()[0], 1.0), {}, "glpk", "read and copy exmip1");
       OSIUNITTEST_ASSERT_ERROR(eq(glpkSi.getObjCoefficients()[1], 0.0), {}, "glpk", "read and copy exmip1");
@@ -203,58 +202,58 @@ void OsiGlpkSolverInterfaceUnitTest(const std::string & mpsDir, const std::strin
       OSIUNITTEST_ASSERT_ERROR(eq(glpkSi.getObjCoefficients()[4], 2.0), {}, "glpk", "read and copy exmip1");
       OSIUNITTEST_ASSERT_ERROR(eq(glpkSi.getObjCoefficients()[5], 0.0), {}, "glpk", "read and copy exmip1");
       OSIUNITTEST_ASSERT_ERROR(eq(glpkSi.getObjCoefficients()[6], 0.0), {}, "glpk", "read and copy exmip1");
-      OSIUNITTEST_ASSERT_ERROR(eq(glpkSi.getObjCoefficients()[7],-1.0), {}, "glpk", "read and copy exmip1");
+      OSIUNITTEST_ASSERT_ERROR(eq(glpkSi.getObjCoefficients()[7], -1.0), {}, "glpk", "read and copy exmip1");
     }
-    
-    // Test matrixByRow method
-    { 
-      const OsiGlpkSolverInterface si(m);
-      const CoinPackedMatrix * smP = si.getMatrixByRow();
 
-      OSIUNITTEST_ASSERT_ERROR(smP->getMajorDim()    ==  5, return, "glpk", "getMatrixByRow: major dim");
+    // Test matrixByRow method
+    {
+      const OsiGlpkSolverInterface si(m);
+      const CoinPackedMatrix *smP = si.getMatrixByRow();
+
+      OSIUNITTEST_ASSERT_ERROR(smP->getMajorDim() == 5, return, "glpk", "getMatrixByRow: major dim");
       OSIUNITTEST_ASSERT_ERROR(smP->getNumElements() == 14, return, "glpk", "getMatrixByRow: num elements");
 
       CoinRelFltEq eq;
-      const double * ev = smP->getElements();
+      const double *ev = smP->getElements();
 
-      // GLPK returns each row in reverse order. This is consistent with 
+      // GLPK returns each row in reverse order. This is consistent with
       // the sparse matrix format but is not what most solvers do.  That's
       // why this section is different.
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 4], 3.0), {}, "glpk", "getMatrixByRow: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 3], 1.0), {}, "glpk", "getMatrixByRow: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 2],-2.0), {}, "glpk", "getMatrixByRow: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 1],-1.0), {}, "glpk", "getMatrixByRow: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 0],-1.0), {}, "glpk", "getMatrixByRow: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 6], 2.0), {}, "glpk", "getMatrixByRow: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 5], 1.1), {}, "glpk", "getMatrixByRow: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 8], 1.0), {}, "glpk", "getMatrixByRow: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 7], 1.0), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[4], 3.0), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[3], 1.0), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[2], -2.0), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[1], -1.0), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[0], -1.0), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[6], 2.0), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[5], 1.1), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[8], 1.0), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[7], 1.0), {}, "glpk", "getMatrixByRow: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[10], 2.8), {}, "glpk", "getMatrixByRow: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 9],-1.2), {}, "glpk", "getMatrixByRow: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[9], -1.2), {}, "glpk", "getMatrixByRow: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[13], 5.6), {}, "glpk", "getMatrixByRow: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[12], 1.0), {}, "glpk", "getMatrixByRow: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[11], 1.9), {}, "glpk", "getMatrixByRow: elements");
-      
-      const CoinBigIndex * mi = smP->getVectorStarts();
-      OSIUNITTEST_ASSERT_ERROR(mi[0] ==  0, {}, "glpk", "getMatrixByRow: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[1] ==  5, {}, "glpk", "getMatrixByRow: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[2] ==  7, {}, "glpk", "getMatrixByRow: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[3] ==  9, {}, "glpk", "getMatrixByRow: vector starts");
+
+      const CoinBigIndex *mi = smP->getVectorStarts();
+      OSIUNITTEST_ASSERT_ERROR(mi[0] == 0, {}, "glpk", "getMatrixByRow: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[1] == 5, {}, "glpk", "getMatrixByRow: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[2] == 7, {}, "glpk", "getMatrixByRow: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[3] == 9, {}, "glpk", "getMatrixByRow: vector starts");
       OSIUNITTEST_ASSERT_ERROR(mi[4] == 11, {}, "glpk", "getMatrixByRow: vector starts");
       OSIUNITTEST_ASSERT_ERROR(mi[5] == 14, {}, "glpk", "getMatrixByRow: vector starts");
-      
-      const int * ei = smP->getIndices();
-      OSIUNITTEST_ASSERT_ERROR(ei[ 4] == 0, {}, "glpk", "getMatrixByRow: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 3] == 1, {}, "glpk", "getMatrixByRow: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 2] == 3, {}, "glpk", "getMatrixByRow: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 1] == 4, {}, "glpk", "getMatrixByRow: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 0] == 7, {}, "glpk", "getMatrixByRow: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 6] == 1, {}, "glpk", "getMatrixByRow: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 5] == 2, {}, "glpk", "getMatrixByRow: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 8] == 2, {}, "glpk", "getMatrixByRow: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 7] == 5, {}, "glpk", "getMatrixByRow: indices");
+
+      const int *ei = smP->getIndices();
+      OSIUNITTEST_ASSERT_ERROR(ei[4] == 0, {}, "glpk", "getMatrixByRow: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[3] == 1, {}, "glpk", "getMatrixByRow: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[2] == 3, {}, "glpk", "getMatrixByRow: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[1] == 4, {}, "glpk", "getMatrixByRow: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[0] == 7, {}, "glpk", "getMatrixByRow: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[6] == 1, {}, "glpk", "getMatrixByRow: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[5] == 2, {}, "glpk", "getMatrixByRow: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[8] == 2, {}, "glpk", "getMatrixByRow: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[7] == 5, {}, "glpk", "getMatrixByRow: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[10] == 3, {}, "glpk", "getMatrixByRow: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 9] == 6, {}, "glpk", "getMatrixByRow: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[9] == 6, {}, "glpk", "getMatrixByRow: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[13] == 0, {}, "glpk", "getMatrixByRow: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[12] == 4, {}, "glpk", "getMatrixByRow: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[11] == 7, {}, "glpk", "getMatrixByRow: indices");
@@ -263,46 +262,48 @@ void OsiGlpkSolverInterfaceUnitTest(const std::string & mpsDir, const std::strin
     // Test adding several cuts
     {
       OsiGlpkSolverInterface fim;
-      std::string fn = mpsDir+"exmip1";
-      fim.readMps(fn.c_str(),"mps");
+      std::string fn = mpsDir + "exmip1";
+      fim.readMps(fn.c_str(), "mps");
       // exmip1.mps has 2 integer variables with index 2 & 3
       fim.initialSolve();
       OsiRowCut cuts[3];
-      
+
       // Generate one ineffective cut plus two trivial cuts
       int c;
       int nc = fim.getNumCols();
       int *inx = new int[nc];
-      for (c=0;c<nc;c++) inx[c]=c;
+      for (c = 0; c < nc; c++)
+        inx[c] = c;
       double *el = new double[nc];
-      for (c=0;c<nc;c++) el[c]=1.0e-50+((double)c)*((double)c);
-      
-      cuts[0].setRow(nc,inx,el);
+      for (c = 0; c < nc; c++)
+        el[c] = 1.0e-50 + ((double)c) * ((double)c);
+
+      cuts[0].setRow(nc, inx, el);
       cuts[0].setLb(-100.);
       cuts[0].setUb(500.);
       cuts[0].setEffectiveness(22);
-      el[4]=0.0; // to get inf later
-      
-      for (c=2;c<4;c++) {
-      	el[0]=1.0;
-      	inx[0]=c;
-      	cuts[c-1].setRow(1,inx,el);
-      	cuts[c-1].setLb(1.);
-      	cuts[c-1].setUb(100.);
-      	cuts[c-1].setEffectiveness(c);
+      el[4] = 0.0; // to get inf later
+
+      for (c = 2; c < 4; c++) {
+        el[0] = 1.0;
+        inx[0] = c;
+        cuts[c - 1].setRow(1, inx, el);
+        cuts[c - 1].setLb(1.);
+        cuts[c - 1].setUb(100.);
+        cuts[c - 1].setEffectiveness(c);
       }
       fim.writeMps("x1.mps");
-      fim.applyRowCuts(3,cuts);
+      fim.applyRowCuts(3, cuts);
       fim.writeMps("x2.mps");
       // resolve - should get message about zero elements
       fim.resolve();
       fim.writeMps("x3.mps");
       // check integer solution
-      const double * cs = fim.getColSolution();
+      const double *cs = fim.getColSolution();
       CoinRelFltEq eq;
       OSIUNITTEST_ASSERT_ERROR(eq(cs[2], 1.0), {}, "glpk", "add cuts");
       OSIUNITTEST_ASSERT_ERROR(eq(cs[3], 1.0), {}, "glpk", "add cuts");
-#if 0  // ??? Not working for some reason.
+#if 0 // ??? Not working for some reason.
       // check will find invalid matrix
       el[0]=1.0/el[4];
       inx[0]=0;
@@ -315,60 +316,60 @@ void OsiGlpkSolverInterfaceUnitTest(const std::string & mpsDir, const std::strin
       fim.resolve();
       OSIUNITTEST_ASSERT_WARNING(fim.isAbandoned(), {}, "glpk", "add cuts");
 #endif
-      delete[]el;
-      delete[]inx;
+      delete[] el;
+      delete[] inx;
     }
 
     // Test matrixByCol method
     {
       const OsiGlpkSolverInterface si(m);
-      const CoinPackedMatrix * smP = si.getMatrixByCol();
-      
-      OSIUNITTEST_ASSERT_ERROR(smP->getMajorDim()    ==  8, return, "glpk", "getMatrixByCol: major dim");
-      OSIUNITTEST_ASSERT_ERROR(smP->getMinorDim()    ==  5, return, "glpk", "getMatrixByCol: minor dim");
+      const CoinPackedMatrix *smP = si.getMatrixByCol();
+
+      OSIUNITTEST_ASSERT_ERROR(smP->getMajorDim() == 8, return, "glpk", "getMatrixByCol: major dim");
+      OSIUNITTEST_ASSERT_ERROR(smP->getMinorDim() == 5, return, "glpk", "getMatrixByCol: minor dim");
       OSIUNITTEST_ASSERT_ERROR(smP->getNumElements() == 14, return, "glpk", "getMatrixByCol: number of elements");
       OSIUNITTEST_ASSERT_ERROR(smP->getSizeVectorStarts() == 9, return, "glpk", "getMatrixByCol: vector starts size");
 
       CoinRelFltEq eq;
-      const double * ev = smP->getElements();
+      const double *ev = smP->getElements();
       // Unlike row-ordered matrices, GLPK does column-ordered the "normal" way
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 0], 3.0), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 1], 5.6), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 2], 1.0), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 3], 2.0), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 4], 1.1), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 5], 1.0), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 6],-2.0), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 7], 2.8), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 8],-1.0), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 9], 1.0), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[0], 3.0), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[1], 5.6), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[2], 1.0), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[3], 2.0), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[4], 1.1), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[5], 1.0), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[6], -2.0), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[7], 2.8), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[8], -1.0), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[9], 1.0), {}, "glpk", "getMatrixByCol: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[10], 1.0), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[11],-1.2), {}, "glpk", "getMatrixByCol: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[12],-1.0), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[11], -1.2), {}, "glpk", "getMatrixByCol: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[12], -1.0), {}, "glpk", "getMatrixByCol: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[13], 1.9), {}, "glpk", "getMatrixByCol: elements");
-      
-      const CoinBigIndex * mi = smP->getVectorStarts();
-      OSIUNITTEST_ASSERT_ERROR(mi[0] ==  0, {}, "glpk", "getMatrixByCol: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[1] ==  2, {}, "glpk", "getMatrixByCol: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[2] ==  4, {}, "glpk", "getMatrixByCol: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[3] ==  6, {}, "glpk", "getMatrixByCol: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[4] ==  8, {}, "glpk", "getMatrixByCol: vector starts");
+
+      const CoinBigIndex *mi = smP->getVectorStarts();
+      OSIUNITTEST_ASSERT_ERROR(mi[0] == 0, {}, "glpk", "getMatrixByCol: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[1] == 2, {}, "glpk", "getMatrixByCol: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[2] == 4, {}, "glpk", "getMatrixByCol: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[3] == 6, {}, "glpk", "getMatrixByCol: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[4] == 8, {}, "glpk", "getMatrixByCol: vector starts");
       OSIUNITTEST_ASSERT_ERROR(mi[5] == 10, {}, "glpk", "getMatrixByCol: vector starts");
       OSIUNITTEST_ASSERT_ERROR(mi[6] == 11, {}, "glpk", "getMatrixByCol: vector starts");
       OSIUNITTEST_ASSERT_ERROR(mi[7] == 12, {}, "glpk", "getMatrixByCol: vector starts");
       OSIUNITTEST_ASSERT_ERROR(mi[8] == 14, {}, "glpk", "getMatrixByCol: vector starts");
-      
-      const int * ei = smP->getIndices();
-      OSIUNITTEST_ASSERT_ERROR(ei[ 0] == 0, {}, "glpk", "getMatrixByCol: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 1] == 4, {}, "glpk", "getMatrixByCol: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 2] == 0, {}, "glpk", "getMatrixByCol: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 3] == 1, {}, "glpk", "getMatrixByCol: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 4] == 1, {}, "glpk", "getMatrixByCol: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 5] == 2, {}, "glpk", "getMatrixByCol: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 6] == 0, {}, "glpk", "getMatrixByCol: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 7] == 3, {}, "glpk", "getMatrixByCol: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 8] == 0, {}, "glpk", "getMatrixByCol: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 9] == 4, {}, "glpk", "getMatrixByCol: indices");
+
+      const int *ei = smP->getIndices();
+      OSIUNITTEST_ASSERT_ERROR(ei[0] == 0, {}, "glpk", "getMatrixByCol: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[1] == 4, {}, "glpk", "getMatrixByCol: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[2] == 0, {}, "glpk", "getMatrixByCol: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[3] == 1, {}, "glpk", "getMatrixByCol: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[4] == 1, {}, "glpk", "getMatrixByCol: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[5] == 2, {}, "glpk", "getMatrixByCol: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[6] == 0, {}, "glpk", "getMatrixByCol: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[7] == 3, {}, "glpk", "getMatrixByCol: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[8] == 0, {}, "glpk", "getMatrixByCol: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[9] == 4, {}, "glpk", "getMatrixByCol: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[10] == 2, {}, "glpk", "getMatrixByCol: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[11] == 3, {}, "glpk", "getMatrixByCol: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[12] == 0, {}, "glpk", "getMatrixByCol: indices");
@@ -379,104 +380,104 @@ void OsiGlpkSolverInterfaceUnitTest(const std::string & mpsDir, const std::strin
     {
       OsiGlpkSolverInterface lhs;
       {
-#if 0  // FIXME ??? these won't work because the copy constructor changes the values in m
+#if 0 // FIXME ??? these won't work because the copy constructor changes the values in m
         OSIUNITTEST_ASSERT_ERROR(m.rowrange_ == NULL, {}, "glpk", "???");
         OSIUNITTEST_ASSERT_ERROR(m.rowsense_ == NULL, {}, "glpk", "???");
         OSIUNITTEST_ASSERT_ERROR(m.rhs_ == NULL, {}, "glpk", "???");
         OSIUNITTEST_ASSERT_ERROR(m.matrixByRow_ == NULL, {}, "glpk", "???");
 #endif
-        
+
         OsiGlpkSolverInterface siC1(m);
         OSIUNITTEST_ASSERT_WARNING(siC1.rowrange_ == NULL, {}, "glpk", "row range");
         OSIUNITTEST_ASSERT_WARNING(siC1.rowsense_ == NULL, {}, "glpk", "row sense");
         OSIUNITTEST_ASSERT_WARNING(siC1.rhs_ == NULL, {}, "glpk", "right hand side");
         OSIUNITTEST_ASSERT_WARNING(siC1.matrixByRow_ == NULL, {}, "glpk", "matrix by row");
 
-        const char   * siC1rs  = siC1.getRowSense();
+        const char *siC1rs = siC1.getRowSense();
         OSIUNITTEST_ASSERT_ERROR(siC1rs[0] == 'G', {}, "glpk", "row sense");
         OSIUNITTEST_ASSERT_ERROR(siC1rs[1] == 'L', {}, "glpk", "row sense");
         OSIUNITTEST_ASSERT_ERROR(siC1rs[2] == 'E', {}, "glpk", "row sense");
         OSIUNITTEST_ASSERT_ERROR(siC1rs[3] == 'R', {}, "glpk", "row sense");
         OSIUNITTEST_ASSERT_ERROR(siC1rs[4] == 'R', {}, "glpk", "row sense");
-        
-        const double * siC1rhs = siC1.getRightHandSide();
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[0],2.5), {}, "glpk", "right hand side");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[1],2.1), {}, "glpk", "right hand side");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[2],4.0), {}, "glpk", "right hand side");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[3],5.0), {}, "glpk", "right hand side");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[4],15.), {}, "glpk", "right hand side");
-        
-        const double * siC1rr  = siC1.getRowRange();
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[0],0.0), {}, "glpk", "row range");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[1],0.0), {}, "glpk", "row range");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[2],0.0), {}, "glpk", "row range");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[3],5.0-1.8), {}, "glpk", "row range");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[4],15.0-3.0), {}, "glpk", "row range");
-        
-        const CoinPackedMatrix * siC1mbr = siC1.getMatrixByRow();
+
+        const double *siC1rhs = siC1.getRightHandSide();
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[0], 2.5), {}, "glpk", "right hand side");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[1], 2.1), {}, "glpk", "right hand side");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[2], 4.0), {}, "glpk", "right hand side");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[3], 5.0), {}, "glpk", "right hand side");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[4], 15.), {}, "glpk", "right hand side");
+
+        const double *siC1rr = siC1.getRowRange();
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[0], 0.0), {}, "glpk", "row range");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[1], 0.0), {}, "glpk", "row range");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[2], 0.0), {}, "glpk", "row range");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[3], 5.0 - 1.8), {}, "glpk", "row range");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[4], 15.0 - 3.0), {}, "glpk", "row range");
+
+        const CoinPackedMatrix *siC1mbr = siC1.getMatrixByRow();
         OSIUNITTEST_ASSERT_ERROR(siC1mbr != NULL, {}, "glpk", "matrix by row");
-        OSIUNITTEST_ASSERT_ERROR(siC1mbr->getMajorDim()    ==  5, return, "glpk", "matrix by row: major dim");
+        OSIUNITTEST_ASSERT_ERROR(siC1mbr->getMajorDim() == 5, return, "glpk", "matrix by row: major dim");
         OSIUNITTEST_ASSERT_ERROR(siC1mbr->getNumElements() == 14, return, "glpk", "matrix by row: num elements");
-        
-        const double * ev = siC1mbr->getElements();
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 4], 3.0), {}, "glpk", "matrix by row: elements");
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 3], 1.0), {}, "glpk", "matrix by row: elements");
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 2],-2.0), {}, "glpk", "matrix by row: elements");
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 1],-1.0), {}, "glpk", "matrix by row: elements");
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 0],-1.0), {}, "glpk", "matrix by row: elements");
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 6], 2.0), {}, "glpk", "matrix by row: elements");
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 5], 1.1), {}, "glpk", "matrix by row: elements");
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 8], 1.0), {}, "glpk", "matrix by row: elements");
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 7], 1.0), {}, "glpk", "matrix by row: elements");
+
+        const double *ev = siC1mbr->getElements();
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[4], 3.0), {}, "glpk", "matrix by row: elements");
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[3], 1.0), {}, "glpk", "matrix by row: elements");
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[2], -2.0), {}, "glpk", "matrix by row: elements");
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[1], -1.0), {}, "glpk", "matrix by row: elements");
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[0], -1.0), {}, "glpk", "matrix by row: elements");
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[6], 2.0), {}, "glpk", "matrix by row: elements");
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[5], 1.1), {}, "glpk", "matrix by row: elements");
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[8], 1.0), {}, "glpk", "matrix by row: elements");
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[7], 1.0), {}, "glpk", "matrix by row: elements");
         OSIUNITTEST_ASSERT_ERROR(eq(ev[10], 2.8), {}, "glpk", "matrix by row: elements");
-        OSIUNITTEST_ASSERT_ERROR(eq(ev[ 9],-1.2), {}, "glpk", "matrix by row: elements");
+        OSIUNITTEST_ASSERT_ERROR(eq(ev[9], -1.2), {}, "glpk", "matrix by row: elements");
         OSIUNITTEST_ASSERT_ERROR(eq(ev[13], 5.6), {}, "glpk", "matrix by row: elements");
         OSIUNITTEST_ASSERT_ERROR(eq(ev[12], 1.0), {}, "glpk", "matrix by row: elements");
         OSIUNITTEST_ASSERT_ERROR(eq(ev[11], 1.9), {}, "glpk", "matrix by row: elements");
-        
-        const CoinBigIndex * mi = siC1mbr->getVectorStarts();
-        OSIUNITTEST_ASSERT_ERROR(mi[0] ==  0, {}, "glpk", "matrix by row: vector starts");
-        OSIUNITTEST_ASSERT_ERROR(mi[1] ==  5, {}, "glpk", "matrix by row: vector starts");
-        OSIUNITTEST_ASSERT_ERROR(mi[2] ==  7, {}, "glpk", "matrix by row: vector starts");
-        OSIUNITTEST_ASSERT_ERROR(mi[3] ==  9, {}, "glpk", "matrix by row: vector starts");
+
+        const CoinBigIndex *mi = siC1mbr->getVectorStarts();
+        OSIUNITTEST_ASSERT_ERROR(mi[0] == 0, {}, "glpk", "matrix by row: vector starts");
+        OSIUNITTEST_ASSERT_ERROR(mi[1] == 5, {}, "glpk", "matrix by row: vector starts");
+        OSIUNITTEST_ASSERT_ERROR(mi[2] == 7, {}, "glpk", "matrix by row: vector starts");
+        OSIUNITTEST_ASSERT_ERROR(mi[3] == 9, {}, "glpk", "matrix by row: vector starts");
         OSIUNITTEST_ASSERT_ERROR(mi[4] == 11, {}, "glpk", "matrix by row: vector starts");
         OSIUNITTEST_ASSERT_ERROR(mi[5] == 14, {}, "glpk", "matrix by row: vector starts");
-        
-        const int * ei = siC1mbr->getIndices();
-        OSIUNITTEST_ASSERT_ERROR(ei[ 4] == 0, {}, "glpk", "matrix by row: indices");
-        OSIUNITTEST_ASSERT_ERROR(ei[ 3] == 1, {}, "glpk", "matrix by row: indices");
-        OSIUNITTEST_ASSERT_ERROR(ei[ 2] == 3, {}, "glpk", "matrix by row: indices");
-        OSIUNITTEST_ASSERT_ERROR(ei[ 1] == 4, {}, "glpk", "matrix by row: indices");
-        OSIUNITTEST_ASSERT_ERROR(ei[ 0] == 7, {}, "glpk", "matrix by row: indices");
-        OSIUNITTEST_ASSERT_ERROR(ei[ 6] == 1, {}, "glpk", "matrix by row: indices");
-        OSIUNITTEST_ASSERT_ERROR(ei[ 5] == 2, {}, "glpk", "matrix by row: indices");
-        OSIUNITTEST_ASSERT_ERROR(ei[ 8] == 2, {}, "glpk", "matrix by row: indices");
-        OSIUNITTEST_ASSERT_ERROR(ei[ 7] == 5, {}, "glpk", "matrix by row: indices");
+
+        const int *ei = siC1mbr->getIndices();
+        OSIUNITTEST_ASSERT_ERROR(ei[4] == 0, {}, "glpk", "matrix by row: indices");
+        OSIUNITTEST_ASSERT_ERROR(ei[3] == 1, {}, "glpk", "matrix by row: indices");
+        OSIUNITTEST_ASSERT_ERROR(ei[2] == 3, {}, "glpk", "matrix by row: indices");
+        OSIUNITTEST_ASSERT_ERROR(ei[1] == 4, {}, "glpk", "matrix by row: indices");
+        OSIUNITTEST_ASSERT_ERROR(ei[0] == 7, {}, "glpk", "matrix by row: indices");
+        OSIUNITTEST_ASSERT_ERROR(ei[6] == 1, {}, "glpk", "matrix by row: indices");
+        OSIUNITTEST_ASSERT_ERROR(ei[5] == 2, {}, "glpk", "matrix by row: indices");
+        OSIUNITTEST_ASSERT_ERROR(ei[8] == 2, {}, "glpk", "matrix by row: indices");
+        OSIUNITTEST_ASSERT_ERROR(ei[7] == 5, {}, "glpk", "matrix by row: indices");
         OSIUNITTEST_ASSERT_ERROR(ei[10] == 3, {}, "glpk", "matrix by row: indices");
-        OSIUNITTEST_ASSERT_ERROR(ei[ 9] == 6, {}, "glpk", "matrix by row: indices");
+        OSIUNITTEST_ASSERT_ERROR(ei[9] == 6, {}, "glpk", "matrix by row: indices");
         OSIUNITTEST_ASSERT_ERROR(ei[13] == 0, {}, "glpk", "matrix by row: indices");
         OSIUNITTEST_ASSERT_ERROR(ei[12] == 4, {}, "glpk", "matrix by row: indices");
         OSIUNITTEST_ASSERT_ERROR(ei[11] == 7, {}, "glpk", "matrix by row: indices");
 
-        OSIUNITTEST_ASSERT_WARNING(siC1rs  == siC1.getRowSense(), {}, "glpk", "row sense");
+        OSIUNITTEST_ASSERT_WARNING(siC1rs == siC1.getRowSense(), {}, "glpk", "row sense");
         OSIUNITTEST_ASSERT_WARNING(siC1rhs == siC1.getRightHandSide(), {}, "glpk", "right hand side");
-        OSIUNITTEST_ASSERT_WARNING(siC1rr  == siC1.getRowRange(), {}, "glpk", "row range");
+        OSIUNITTEST_ASSERT_WARNING(siC1rr == siC1.getRowRange(), {}, "glpk", "row range");
 
         // Change glpk Model by adding free row
         OsiRowCut rc;
         rc.setLb(-COIN_DBL_MAX);
-        rc.setUb( COIN_DBL_MAX);
+        rc.setUb(COIN_DBL_MAX);
         OsiCuts cuts;
         cuts.insert(rc);
         siC1.applyCuts(cuts);
-             
+
         // Since model was changed, test that cached data is now freed.
         OSIUNITTEST_ASSERT_ERROR(siC1.rowrange_ == NULL, {}, "glpk", "free cached data after adding row");
         OSIUNITTEST_ASSERT_ERROR(siC1.rowsense_ == NULL, {}, "glpk", "free cached data after adding row");
         OSIUNITTEST_ASSERT_ERROR(siC1.rhs_ == NULL, {}, "glpk", "free cached data after adding row");
         OSIUNITTEST_ASSERT_ERROR(siC1.matrixByRow_ == NULL, {}, "glpk", "free cached data after adding row");
-        
-        siC1rs  = siC1.getRowSense();
+
+        siC1rs = siC1.getRowSense();
         OSIUNITTEST_ASSERT_ERROR(siC1rs[0] == 'G', {}, "glpk", "row sense after adding row");
         OSIUNITTEST_ASSERT_ERROR(siC1rs[1] == 'L', {}, "glpk", "row sense after adding row");
         OSIUNITTEST_ASSERT_ERROR(siC1rs[2] == 'E', {}, "glpk", "row sense after adding row");
@@ -485,106 +486,105 @@ void OsiGlpkSolverInterfaceUnitTest(const std::string & mpsDir, const std::strin
         OSIUNITTEST_ASSERT_ERROR(siC1rs[5] == 'N', {}, "glpk", "row sense after adding row");
 
         siC1rhs = siC1.getRightHandSide();
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[0],2.5), {}, "glpk", "right hand side after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[1],2.1), {}, "glpk", "right hand side after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[2],4.0), {}, "glpk", "right hand side after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[3],5.0), {}, "glpk", "right hand side after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[4],15.), {}, "glpk", "right hand side after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[5],0.0), {}, "glpk", "right hand side after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[0], 2.5), {}, "glpk", "right hand side after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[1], 2.1), {}, "glpk", "right hand side after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[2], 4.0), {}, "glpk", "right hand side after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[3], 5.0), {}, "glpk", "right hand side after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[4], 15.), {}, "glpk", "right hand side after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rhs[5], 0.0), {}, "glpk", "right hand side after adding row");
 
-        siC1rr  = siC1.getRowRange();
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[0],0.0), {}, "glpk", "row range after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[1],0.0), {}, "glpk", "row range after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[2],0.0), {}, "glpk", "row range after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[3],5.0-1.8), {}, "glpk", "row range after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[4],15.0-3.0), {}, "glpk", "row range after adding row");
-        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[5],0.0), {}, "glpk", "row range after adding row");
-    
+        siC1rr = siC1.getRowRange();
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[0], 0.0), {}, "glpk", "row range after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[1], 0.0), {}, "glpk", "row range after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[2], 0.0), {}, "glpk", "row range after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[3], 5.0 - 1.8), {}, "glpk", "row range after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[4], 15.0 - 3.0), {}, "glpk", "row range after adding row");
+        OSIUNITTEST_ASSERT_ERROR(eq(siC1rr[5], 0.0), {}, "glpk", "row range after adding row");
+
         lhs = siC1;
       }
-      // Test that lhs has correct values even though siC1 has gone out of scope    
+      // Test that lhs has correct values even though siC1 has gone out of scope
       OSIUNITTEST_ASSERT_ERROR(lhs.rowrange_ == NULL, {}, "glpk", "freed origin after assignment");
       OSIUNITTEST_ASSERT_ERROR(lhs.rowsense_ == NULL, {}, "glpk", "freed origin after assignment");
       OSIUNITTEST_ASSERT_ERROR(lhs.rhs_ == NULL, {}, "glpk", "freed origin after assignment");
       OSIUNITTEST_ASSERT_ERROR(lhs.matrixByRow_ == NULL, {}, "glpk", "freed origin after assignment");
-      
-      const char * lhsrs  = lhs.getRowSense();
+
+      const char *lhsrs = lhs.getRowSense();
       OSIUNITTEST_ASSERT_ERROR(lhsrs[0] == 'G', {}, "glpk", "row sense after assignment");
       OSIUNITTEST_ASSERT_ERROR(lhsrs[1] == 'L', {}, "glpk", "row sense after assignment");
       OSIUNITTEST_ASSERT_ERROR(lhsrs[2] == 'E', {}, "glpk", "row sense after assignment");
       OSIUNITTEST_ASSERT_ERROR(lhsrs[3] == 'R', {}, "glpk", "row sense after assignment");
       OSIUNITTEST_ASSERT_ERROR(lhsrs[4] == 'R', {}, "glpk", "row sense after assignment");
       OSIUNITTEST_ASSERT_ERROR(lhsrs[5] == 'N', {}, "glpk", "row sense after assignment");
-      
-      const double * lhsrhs = lhs.getRightHandSide();
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[0],2.5), {}, "glpk", "right hand side after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[1],2.1), {}, "glpk", "right hand side after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[2],4.0), {}, "glpk", "right hand side after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[3],5.0), {}, "glpk", "right hand side after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[4],15.), {}, "glpk", "right hand side after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[5],0.0), {}, "glpk", "right hand side after assignment");
-      
+
+      const double *lhsrhs = lhs.getRightHandSide();
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[0], 2.5), {}, "glpk", "right hand side after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[1], 2.1), {}, "glpk", "right hand side after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[2], 4.0), {}, "glpk", "right hand side after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[3], 5.0), {}, "glpk", "right hand side after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[4], 15.), {}, "glpk", "right hand side after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrhs[5], 0.0), {}, "glpk", "right hand side after assignment");
+
       const double *lhsrr = lhs.getRowRange();
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[0],0.0), {}, "glpk", "row range after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[1],0.0), {}, "glpk", "row range after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[2],0.0), {}, "glpk", "row range after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[3],5.0-1.8), {}, "glpk", "row range after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[4],15.0-3.0), {}, "glpk", "row range after assignment");
-      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[5],0.0), {}, "glpk", "row range after assignment");
-      
-      const CoinPackedMatrix * lhsmbr = lhs.getMatrixByRow();
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[0], 0.0), {}, "glpk", "row range after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[1], 0.0), {}, "glpk", "row range after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[2], 0.0), {}, "glpk", "row range after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[3], 5.0 - 1.8), {}, "glpk", "row range after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[4], 15.0 - 3.0), {}, "glpk", "row range after assignment");
+      OSIUNITTEST_ASSERT_ERROR(eq(lhsrr[5], 0.0), {}, "glpk", "row range after assignment");
+
+      const CoinPackedMatrix *lhsmbr = lhs.getMatrixByRow();
       OSIUNITTEST_ASSERT_ERROR(lhsmbr != NULL, return, "glpk", "matrix by row after assignment");
-      OSIUNITTEST_ASSERT_ERROR(lhsmbr->getMajorDim()    ==  6, return, "glpk", "matrix by row after assignment: major dim");
+      OSIUNITTEST_ASSERT_ERROR(lhsmbr->getMajorDim() == 6, return, "glpk", "matrix by row after assignment: major dim");
       OSIUNITTEST_ASSERT_ERROR(lhsmbr->getNumElements() == 14, return, "glpk", "matrix by row after assignment: num elements");
 
-      const double * ev = lhsmbr->getElements();
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 4], 3.0), {}, "glpk", "matrix by row after assignment: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 3], 1.0), {}, "glpk", "matrix by row after assignment: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 2],-2.0), {}, "glpk", "matrix by row after assignment: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 1],-1.0), {}, "glpk", "matrix by row after assignment: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 0],-1.0), {}, "glpk", "matrix by row after assignment: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 6], 2.0), {}, "glpk", "matrix by row after assignment: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 5], 1.1), {}, "glpk", "matrix by row after assignment: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 8], 1.0), {}, "glpk", "matrix by row after assignment: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 7], 1.0), {}, "glpk", "matrix by row after assignment: elements");
+      const double *ev = lhsmbr->getElements();
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[4], 3.0), {}, "glpk", "matrix by row after assignment: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[3], 1.0), {}, "glpk", "matrix by row after assignment: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[2], -2.0), {}, "glpk", "matrix by row after assignment: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[1], -1.0), {}, "glpk", "matrix by row after assignment: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[0], -1.0), {}, "glpk", "matrix by row after assignment: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[6], 2.0), {}, "glpk", "matrix by row after assignment: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[5], 1.1), {}, "glpk", "matrix by row after assignment: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[8], 1.0), {}, "glpk", "matrix by row after assignment: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[7], 1.0), {}, "glpk", "matrix by row after assignment: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[10], 2.8), {}, "glpk", "matrix by row after assignment: elements");
-      OSIUNITTEST_ASSERT_ERROR(eq(ev[ 9],-1.2), {}, "glpk", "matrix by row after assignment: elements");
+      OSIUNITTEST_ASSERT_ERROR(eq(ev[9], -1.2), {}, "glpk", "matrix by row after assignment: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[13], 5.6), {}, "glpk", "matrix by row after assignment: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[12], 1.0), {}, "glpk", "matrix by row after assignment: elements");
       OSIUNITTEST_ASSERT_ERROR(eq(ev[11], 1.9), {}, "glpk", "matrix by row after assignment: elements");
-      
-      const CoinBigIndex * mi = lhsmbr->getVectorStarts();
-      OSIUNITTEST_ASSERT_ERROR(mi[0] ==  0, {}, "glpk", "matrix by row after assignment: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[1] ==  5, {}, "glpk", "matrix by row after assignment: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[2] ==  7, {}, "glpk", "matrix by row after assignment: vector starts");
-      OSIUNITTEST_ASSERT_ERROR(mi[3] ==  9, {}, "glpk", "matrix by row after assignment: vector starts");
+
+      const CoinBigIndex *mi = lhsmbr->getVectorStarts();
+      OSIUNITTEST_ASSERT_ERROR(mi[0] == 0, {}, "glpk", "matrix by row after assignment: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[1] == 5, {}, "glpk", "matrix by row after assignment: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[2] == 7, {}, "glpk", "matrix by row after assignment: vector starts");
+      OSIUNITTEST_ASSERT_ERROR(mi[3] == 9, {}, "glpk", "matrix by row after assignment: vector starts");
       OSIUNITTEST_ASSERT_ERROR(mi[4] == 11, {}, "glpk", "matrix by row after assignment: vector starts");
       OSIUNITTEST_ASSERT_ERROR(mi[5] == 14, {}, "glpk", "matrix by row after assignment: vector starts");
-      
-      const int * ei = lhsmbr->getIndices();
-      OSIUNITTEST_ASSERT_ERROR(ei[ 4] == 0, {}, "glpk", "matrix by row after assignment: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 3] == 1, {}, "glpk", "matrix by row after assignment: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 2] == 3, {}, "glpk", "matrix by row after assignment: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 1] == 4, {}, "glpk", "matrix by row after assignment: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 0] == 7, {}, "glpk", "matrix by row after assignment: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 6] == 1, {}, "glpk", "matrix by row after assignment: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 5] == 2, {}, "glpk", "matrix by row after assignment: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 8] == 2, {}, "glpk", "matrix by row after assignment: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 7] == 5, {}, "glpk", "matrix by row after assignment: indices");
+
+      const int *ei = lhsmbr->getIndices();
+      OSIUNITTEST_ASSERT_ERROR(ei[4] == 0, {}, "glpk", "matrix by row after assignment: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[3] == 1, {}, "glpk", "matrix by row after assignment: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[2] == 3, {}, "glpk", "matrix by row after assignment: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[1] == 4, {}, "glpk", "matrix by row after assignment: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[0] == 7, {}, "glpk", "matrix by row after assignment: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[6] == 1, {}, "glpk", "matrix by row after assignment: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[5] == 2, {}, "glpk", "matrix by row after assignment: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[8] == 2, {}, "glpk", "matrix by row after assignment: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[7] == 5, {}, "glpk", "matrix by row after assignment: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[10] == 3, {}, "glpk", "matrix by row after assignment: indices");
-      OSIUNITTEST_ASSERT_ERROR(ei[ 9] == 6, {}, "glpk", "matrix by row after assignment: indices");
+      OSIUNITTEST_ASSERT_ERROR(ei[9] == 6, {}, "glpk", "matrix by row after assignment: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[13] == 0, {}, "glpk", "matrix by row after assignment: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[12] == 4, {}, "glpk", "matrix by row after assignment: indices");
       OSIUNITTEST_ASSERT_ERROR(ei[11] == 7, {}, "glpk", "matrix by row after assignment: indices");
     }
-    
   }
 
   // Test add/delete columns
-  {    
+  {
     OsiGlpkSolverInterface m;
-    std::string fn = mpsDir+"p0033";
-    m.readMps(fn.c_str(),"mps");
+    std::string fn = mpsDir + "p0033";
+    m.readMps(fn.c_str(), "mps");
     double inf = m.getInfinity();
 
     CoinPackedVector c0;
@@ -594,37 +594,40 @@ void OsiGlpkSolverInterfaceUnitTest(const std::string & mpsDir, const std::strin
     m.initialSolve();
     double objValue = m.getObjValue();
     CoinRelFltEq eq(1.0e-2);
-    OSIUNITTEST_ASSERT_ERROR(eq(objValue,2520.57), {}, "glpk", "add/delete columns: first optimal value");
+    OSIUNITTEST_ASSERT_ERROR(eq(objValue, 2520.57), {}, "glpk", "add/delete columns: first optimal value");
     // Try deleting first column that's nonbasic at lower bound (0).
-    int * d = new int[1];
-    CoinWarmStartBasis *cwsb = dynamic_cast<CoinWarmStartBasis *>(m.getWarmStart()) ;
+    int *d = new int[1];
+    CoinWarmStartBasis *cwsb = dynamic_cast< CoinWarmStartBasis * >(m.getWarmStart());
     OSIUNITTEST_ASSERT_ERROR(cwsb != NULL, {}, "glpk", "add/delete columns: have warm start basis");
-    CoinWarmStartBasis::Status stati ;
-    int iCol ;
-    for (iCol = 0 ;  iCol < cwsb->getNumStructural() ; iCol++)
-    { stati = cwsb->getStructStatus(iCol) ;
-      if (stati == CoinWarmStartBasis::atLowerBound) break ; }
-    d[0]=iCol;
-    m.deleteCols(1,d);
-    delete [] d;
+    CoinWarmStartBasis::Status stati;
+    int iCol;
+    for (iCol = 0; iCol < cwsb->getNumStructural(); iCol++) {
+      stati = cwsb->getStructStatus(iCol);
+      if (stati == CoinWarmStartBasis::atLowerBound)
+        break;
+    }
+    d[0] = iCol;
+    m.deleteCols(1, d);
+    delete[] d;
     delete cwsb;
-    d=NULL;
+    d = NULL;
     m.resolve();
     objValue = m.getObjValue();
-    OSIUNITTEST_ASSERT_ERROR(eq(objValue,2520.57), {}, "glpk", "add/delete columns: optimal value after deleting nonbasic column");
+    OSIUNITTEST_ASSERT_ERROR(eq(objValue, 2520.57), {}, "glpk", "add/delete columns: optimal value after deleting nonbasic column");
     // Try deleting column we added. If basic, go to initialSolve as deleting
     // basic variable trashes basis required for warm start.
-    iCol = m.getNumCols()-1;
-    cwsb = dynamic_cast<CoinWarmStartBasis *>(m.getWarmStart()) ;
-    stati =  cwsb->getStructStatus(iCol) ;
+    iCol = m.getNumCols() - 1;
+    cwsb = dynamic_cast< CoinWarmStartBasis * >(m.getWarmStart());
+    stati = cwsb->getStructStatus(iCol);
     delete cwsb;
-    m.deleteCols(1,&iCol);
-    if (stati == CoinWarmStartBasis::basic)
-    { m.initialSolve() ; }
-    else
-    { m.resolve(); }
+    m.deleteCols(1, &iCol);
+    if (stati == CoinWarmStartBasis::basic) {
+      m.initialSolve();
+    } else {
+      m.resolve();
+    }
     objValue = m.getObjValue();
-    OSIUNITTEST_ASSERT_ERROR(eq(objValue,2520.57), {}, "glpk", "add/delete columns: optimal value after deleting added column");
+    OSIUNITTEST_ASSERT_ERROR(eq(objValue, 2520.57), {}, "glpk", "add/delete columns: optimal value after deleting added column");
   }
 
 #if 0
@@ -772,32 +775,32 @@ void OsiGlpkSolverInterfaceUnitTest(const std::string & mpsDir, const std::strin
     m.disableSimplexInterface();
     free(binvA);
   }
-#endif 
+#endif
 
-/*
+  /*
   Read in exmip1 and solve it with verbose output setting.
 */
-  { OsiGlpkSolverInterface osi ;
-    std::cout << "Boosting verbosity.\n" ;
-    osi.setHintParam(OsiDoReducePrint,false,OsiForceDo) ;
+  {
+    OsiGlpkSolverInterface osi;
+    std::cout << "Boosting verbosity.\n";
+    osi.setHintParam(OsiDoReducePrint, false, OsiForceDo);
 
-    std::string exmpsfile = mpsDir+"exmip1" ;
-    std::string probname ;
-    std::cout << "Reading mps file \"" << exmpsfile << "\"\n" ;
-    osi.readMps(exmpsfile.c_str(), "mps") ;
-    OSIUNITTEST_ASSERT_ERROR(osi.getStrParam(OsiProbName,probname), {}, "glpk", "get problem name");
-    std::cout << "Solving " << probname << " ... \n" ;
-    osi.initialSolve() ;
-    double val = osi.getObjValue() ;
-    std::cout << "And the answer is " << val << ".\n" ;
+    std::string exmpsfile = mpsDir + "exmip1";
+    std::string probname;
+    std::cout << "Reading mps file \"" << exmpsfile << "\"\n";
+    osi.readMps(exmpsfile.c_str(), "mps");
+    OSIUNITTEST_ASSERT_ERROR(osi.getStrParam(OsiProbName, probname), {}, "glpk", "get problem name");
+    std::cout << "Solving " << probname << " ... \n";
+    osi.initialSolve();
+    double val = osi.getObjValue();
+    std::cout << "And the answer is " << val << ".\n";
     OSIUNITTEST_ASSERT_ERROR(fabs(val - 3.23) < 0.01, {}, "glpk", "solve exmip1");
   }
 
   // Do common solverInterface testing
   {
     OsiGlpkSolverInterface m;
-    OsiSolverInterfaceCommonUnitTest(&m, mpsDir,netlibDir);
+    OsiSolverInterfaceCommonUnitTest(&m, mpsDir, netlibDir);
   }
-
 }
 #endif
