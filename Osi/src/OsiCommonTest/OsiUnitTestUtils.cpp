@@ -585,3 +585,6 @@ void TestOutcomes::getCountBySeverity(TestOutcome::SeverityLevel sev,
 }
 
 } // end OsiUnitTest namespace
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

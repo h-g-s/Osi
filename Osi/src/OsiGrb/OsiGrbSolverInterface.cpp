@@ -9,7 +9,7 @@
 // Copyright (C) 2009 Humboldt University Berlin and others.
 // All Rights Reserved.
 
-// $Id$
+// $Id: OsiGrbSolverInterface.cpp 2197 2019-01-06 23:00:34Z unxusr $
 
 #include <iostream>
 #include <cassert>
@@ -3907,3 +3907,6 @@ void OsiGrbSolverInterface::getBasisStatus(int *cstat, int *rstat) const
     }
   }
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

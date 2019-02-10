@@ -891,3 +891,6 @@ private:
 void OsiCpxSolverInterfaceUnitTest(const std::string &mpsDir, const std::string &netlibDir);
 
 #endif
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

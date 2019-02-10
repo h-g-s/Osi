@@ -288,3 +288,6 @@ void OsiColCutUnitTest(const OsiSolverInterface *baseSiP, const std::string &mps
     OSIUNITTEST_ASSERT_ERROR(!cut.violated(solution), {}, "osicolcut", "violated");
   }
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

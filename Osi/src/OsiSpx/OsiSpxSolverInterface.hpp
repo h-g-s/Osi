@@ -10,7 +10,7 @@
 //-----------------------------------------------------------------------------
 // Copyright (C) 2002, Tobias Pfender, International Business Machines
 // Corporation and others.  All Rights Reserved.
-// Last edit: $Id$
+// Last edit: $Id: OsiSpxSolverInterface.hpp 2200 2019-01-06 23:02:02Z unxusr $
 
 #ifndef OsiSpxSolverInterface_H
 #define OsiSpxSolverInterface_H
@@ -738,3 +738,6 @@ private:
 void OsiSpxSolverInterfaceUnitTest(const std::string &mpsDir, const std::string &netlibDir);
 
 #endif
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

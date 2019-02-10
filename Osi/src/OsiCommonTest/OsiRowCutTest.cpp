@@ -350,3 +350,6 @@ void OsiRowCutUnitTest(const OsiSolverInterface *baseSiP,
   OSIUNITTEST_ASSERT_ERROR(cut.violated(solution), {}, "osirowcut", "violation");
 }
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

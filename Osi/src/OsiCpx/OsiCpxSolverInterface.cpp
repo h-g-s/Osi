@@ -3857,3 +3857,6 @@ void OsiCpxSolverInterface::getBasics(int *index) const
   exit(1);
 } /* getBasics */
 #endif /* not CPX_VERSION >= 900 */
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

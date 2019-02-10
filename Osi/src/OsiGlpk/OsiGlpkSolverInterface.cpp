@@ -954,10 +954,17 @@ bool OGSI::isProvenPrimalInfeasible() const
 bool OGSI::isProvenDualInfeasible() const
 {
   LPX *model = getMutableModelPtr();
+<<<<<<< HEAD
 
   if (isDualInfeasible_ == true)
     return true;
 
+=======
+
+  if (isDualInfeasible_ == true)
+    return true;
+
+>>>>>>> fa8ac799df088a890bf9c6ad699aab717b6ad31e
   if (bbWasLast_ == 0)
     return lpx_get_dual_stat(model) == LPX_D_NOFEAS;
   else
@@ -1183,6 +1190,7 @@ bool OGSI::setWarmStart(const CoinWarmStart *warmstart)
       return (false);
     }
     }
+<<<<<<< HEAD
 
     lpx_set_row_stat(lp_, i + 1, stati);
   }
@@ -1216,6 +1224,41 @@ bool OGSI::setWarmStart(const CoinWarmStart *warmstart)
     lpx_set_col_stat(lp_, j + 1, statj);
   }
 
+=======
+
+    lpx_set_row_stat(lp_, i + 1, stati);
+  }
+
+  for (int j = 0; j < numcols; j++) {
+    int statj;
+
+    switch (ws->getStructStatus(j)) {
+    case CoinWarmStartBasis::basic: {
+      statj = LPX_BS;
+      break;
+    }
+    case CoinWarmStartBasis::atLowerBound: {
+      statj = LPX_NL;
+      break;
+    }
+    case CoinWarmStartBasis::atUpperBound: {
+      statj = LPX_NU;
+      break;
+    }
+    case CoinWarmStartBasis::isFree: {
+      statj = LPX_NF;
+      break;
+    }
+    default: {
+      assert(false);
+      return (false);
+    }
+    }
+
+    lpx_set_col_stat(lp_, j + 1, statj);
+  }
+
+>>>>>>> fa8ac799df088a890bf9c6ad699aab717b6ad31e
   return (true);
 }
 
@@ -1838,9 +1881,15 @@ const double *OGSI::getReducedCost() const
       redcost_[j] = 0;
     }
   }
+<<<<<<< HEAD
 
   delete[] yA;
 
+=======
+
+  delete[] yA;
+
+>>>>>>> fa8ac799df088a890bf9c6ad699aab717b6ad31e
   return (redcost_);
 }
 
@@ -3653,3 +3702,6 @@ void OsiGlpkSolverInterface::decrementInstanceCounter()
   if (--numInstances_ == 0)
     glp_free_env();
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

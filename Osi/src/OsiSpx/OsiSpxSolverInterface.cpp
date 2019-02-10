@@ -9,7 +9,7 @@
 //-----------------------------------------------------------------------------
 // Copyright (C) 2002, Tobias Pfender, International Business Machines
 // Corporation and others.  All Rights Reserved.
-// Last edit: $Id$
+// Last edit: $Id: OsiSpxSolverInterface.cpp 2200 2019-01-06 23:02:02Z unxusr $
 
 #include "CoinPragma.hpp"
 
@@ -1705,3 +1705,6 @@ void OsiSpxSolverInterface::freeAllMemory()
 #endif
   delete spxintvars_;
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

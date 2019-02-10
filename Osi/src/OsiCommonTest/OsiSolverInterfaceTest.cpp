@@ -4623,3 +4623,6 @@ void OsiSolverInterfaceCommonUnitTest(const OsiSolverInterface *emptySi,
           0  0  5  0 -6  >= -4
           2 -4  0  6  0  >=  5
   */
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

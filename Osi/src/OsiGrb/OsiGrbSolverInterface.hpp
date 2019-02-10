@@ -10,7 +10,7 @@
 // Copyright (C) 2009 Humboldt University Berlin and others.
 // All Rights Reserved.
 
-// $Id$
+// $Id: OsiGrbSolverInterface.hpp 2197 2019-01-06 23:00:34Z unxusr $
 
 #ifndef OsiGrbSolverInterface_H
 #define OsiGrbSolverInterface_H
@@ -925,3 +925,6 @@ private:
 void OsiGrbSolverInterfaceUnitTest(const std::string &mpsDir, const std::string &netlibDir);
 
 #endif
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

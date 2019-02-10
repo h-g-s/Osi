@@ -303,3 +303,6 @@ void OsiSolverInterfaceMpsUnitTest(const std::vector< OsiSolverInterface * > &ve
       << std::endl;
   }
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

@@ -108,3 +108,6 @@ void OsiRowCutDebuggerUnitTest(const OsiSolverInterface *baseSiP, const std::str
     delete imP;
   }
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

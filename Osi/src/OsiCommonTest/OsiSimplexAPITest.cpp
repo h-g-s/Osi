@@ -747,3 +747,6 @@ void testSimplexAPI(const OsiSolverInterface *emptySi, const std::string &sample
 }
 
 } /* namespace OsiUnitTest */
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

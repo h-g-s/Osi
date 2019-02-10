@@ -907,3 +907,6 @@ private:
 void OsiGlpkSolverInterfaceUnitTest(const std::string &mpsDir, const std::string &netlibDir);
 
 #endif // OsiGlpkSolverInterface_H
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/
