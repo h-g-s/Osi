@@ -500,3 +500,6 @@ void OsiCuts::eraseAndDumpCuts(const std::vector< int > to_erase)
 }
 
 #endif
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

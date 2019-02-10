@@ -121,3 +121,6 @@ OsiColCut::violated(const double *solution) const
   }
   return sum;
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

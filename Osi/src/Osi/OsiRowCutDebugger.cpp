@@ -1643,3 +1643,6 @@ void OsiRowCutDebugger::redoSolution(int numberColumns, const int *originalColum
     }
   }
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

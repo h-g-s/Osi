@@ -415,3 +415,6 @@ void OsiSolverResult::restoreResult(OsiSolverInterface &solver) const
   solver.setRowPrice(dualSolution_);
   fixed_.applyBounds(solver, -1);
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

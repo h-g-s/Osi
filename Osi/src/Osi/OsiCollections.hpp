@@ -29,3 +29,6 @@ typedef std::vector< OsiCut * > OsiVectorCutPtr;
 //@}
 
 #endif
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

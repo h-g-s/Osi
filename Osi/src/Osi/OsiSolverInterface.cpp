@@ -1551,7 +1551,7 @@ int OsiSolverInterface::readLp(const char *filename, const double epsilon)
   }
 
   int nerr = readLp(fp, epsilon);
-  fclose(fp);
+  // closed by readLP fclose(fp);
   return (nerr);
 }
 
@@ -2824,3 +2824,6 @@ void OsiSolverInterface::statistics(double &minimumNegative, double &maximumNega
   }
   delete[] number;
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

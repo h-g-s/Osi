@@ -930,3 +930,6 @@ void OsiSolverInterface::setRowColNames(CoinLpIO &mod)
 */
   return;
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

@@ -183,3 +183,6 @@ bool OsiBabSolver::mipFeasible() const
   else
     return mipBound_ < 1.0e50;
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

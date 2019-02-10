@@ -1225,3 +1225,6 @@ int OsiHotInfo::updateInformation(const OsiSolverInterface *solver, const OsiBra
   choose->updateInformation(info, iBranch, this);
   return status;
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/

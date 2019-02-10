@@ -1991,3 +1991,6 @@ void OsiLotsizeBranchingObject::print(const OsiSolverInterface *solver)
     }
   }
 }
+
+/* vi: softtabstop=2 shiftwidth=2 expandtab tabstop=2
+*/
